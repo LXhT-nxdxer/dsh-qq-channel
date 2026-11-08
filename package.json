@@ -1,0 +1,93 @@
+{
+    "name":  "dsh-onebot-qq",
+    "version":  "0.1.1",
+    "description":  "DSH OneBot v11 (NapCat) QQ bot plugin — in-process microkernel + pluggable sub-plugins, install-and-go on Linux / Windows / macOS",
+    "type":  "module",
+    "main":  "./index.js",
+    "exports":  {
+                    ".":  "./index.js",
+                    "./client":  "./client.js",
+                    "./cordis.patch.yml":  "./cordis.patch.yml",
+                    "./package.json":  "./package.json",
+                    "./locale/*.json":  "./locale/*.json",
+                    "./icon":  "./icon.svg"
+                },
+    "bin":  {
+                "dsh-onebot-qq":  "./bin/dsh-onebot-qq.mjs"
+            },
+    "files":  [
+                  "index.js",
+                  "client.js",
+                  "contracts.js",
+                  "kernel",
+                  "admin",
+                  "ops",
+                  "platform",
+                  "plugins",
+                  "vendor",
+                  "bin",
+                  "locale",
+                  "icon.svg",
+                  "cordis.patch.yml",
+                  "README.md",
+                  "LICENSE",
+                  "CHANGELOG.md",
+                  "docs",
+                  "examples"
+              ],
+    "engines":  {
+                    "node":  "\u003e=22",
+                    "dsh":  "\u003e=0.2.1-rc.2 \u003c0.3.0"
+                },
+    "peerDependencies":  {
+                             "@deepseek-ai/cordis":  "*",
+                             "@deepseek-ai/schemastery":  "*",
+                             "@deepseek-ai/dsh-tools":  "*"
+                         },
+    "scripts":  {
+                    "link-deps":  "node scripts/link-deps.mjs",
+                    "test":  "node scripts/link-deps.mjs \u0026\u0026 node --test",
+                    "check:syntax":  "node scripts/check-syntax.mjs",
+                    "check:secrets":  "node scripts/check-no-secrets.mjs",
+                    "check:pack":  "node scripts/check-pack.mjs",
+                    "check":  "node scripts/check-syntax.mjs \u0026\u0026 node scripts/check-no-secrets.mjs \u0026\u0026 node scripts/check-pack.mjs",
+                    "verify":  "node scripts/link-deps.mjs \u0026\u0026 node --test \u0026\u0026 node scripts/check-syntax.mjs \u0026\u0026 node scripts/check-no-secrets.mjs \u0026\u0026 node scripts/check-pack.mjs",
+                    "prepack":  "node scripts/check-no-secrets.mjs \u0026\u0026 node scripts/check-pack.mjs",
+                    "clean:tmp":  "node scripts/clean-tmp.mjs",
+                    "prepublishOnly":  "npm run verify"
+                },
+    "dsh":  {
+                "bundle":  {
+                               "patch":  "./cordis.patch.yml"
+                           },
+                "client":  {
+                               "inject":  [
+                                              "@deepseek-ai/dsh-client-ui-settings"
+                                          ],
+                               "platform":  "web"
+                           }
+            },
+    "keywords":  [
+                     "deepseek-harness",
+                     "dsh",
+                     "dsh-plugin",
+                     "onebot",
+                     "onebot-v11",
+                     "qq",
+                     "qq-bot",
+                     "napcat"
+                 ],
+    "license":  "MIT",
+    "author":  "dsh-onebot-qq contributors",
+    "homepage":  "https://github.com/LXhT-nxdxer/dsh-qq-channel#readme",
+    "repository":  {
+                       "type":  "git",
+                       "url":  "git+https://github.com/LXhT-nxdxer/dsh-qq-channel.git"
+                   },
+    "bugs":  {
+                 "url":  "https://github.com/LXhT-nxdxer/dsh-qq-channel/issues"
+             },
+    "publishConfig":  {
+                          "access":  "public"
+                      }
+}
